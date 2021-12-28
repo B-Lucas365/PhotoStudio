@@ -45,12 +45,12 @@ html{
 }
 
 body{
-    font: 400 1rem "DM sans";
+    font: 400 1rem var(--body-font);
     color: var(--text-color);
     background: var(--body-color);
 }
 .title{
-    font: 700 1.875rem "Poppins";
+    font: 700 var(--title-font-size) var(--title-font);
     color: var(--title-color);
     -webkit-font-smoothing: antialiased;
 }
@@ -63,7 +63,7 @@ body{
     height: 3.5rem;
     padding: 0 2rem;
     border-radius: 0.25rem;
-    font: 500 1rem "DM Sans" var(--body-font);
+    font: 500 1rem var(--body-font);
     transition: background 0.3s;
 
 }
@@ -105,12 +105,15 @@ body{
 }
 
 .section{
-    padding: 5rem 0;
+    padding: calc(5rem + var(--header-height)) 0 ;
 
 }
 
 .section .title{
     margin-bottom: 1rem;
+}
+.section .subtitle{
+    font-size: var(subtitle-font-size);
 }
 
 .section header{
@@ -136,14 +139,12 @@ body{
     box-shadow: 0px 0px 12px rgba(0,0,0,0.2);
 }
 
-main{
-    margin-top: calc(var(--header-height) + 2rem);
-}
+
 
 /*=======================logo===========================================*/
 
 .logo{
-    font: 700 1.31rem "Poppins";
+    font: 700 1.31rem var(--title-font);
     color: var(--title-color);
 }
 .logo span{
@@ -487,6 +488,12 @@ footer{
     background: var(--base-color);
 
 }
+
+footer.section {
+    padding: 4rem 0;
+}
+
+
 footer .logo{
     display: inline-block;
     margin-bottom:1.5rem ;
@@ -505,8 +512,13 @@ footer i{
 
 }
 
+footer .social{
+    grid-auto-flow: column;
+    width: fit-content;
+}
+
 footer .social a{
-    margin-right: 2rem;
+    
     transition: .3s;
     display: inline-block;
 
@@ -543,6 +555,75 @@ footer .social a:hover{
 
 /* responsivo / midia queries*/
 
-@media (min-width: 992px ) {
+@media (min-width: 1200px){
+    
+    .container{
+        max-width: 1120px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
+    .section{
+        padding: 10rem 0;
+    }
+
+    .button{
+        height: 3.125rem;
+    }
+    nav .menu{
+        opacity: 1;
+        visibility: visible;
+        top: 0;
+    }
+
+    nav .menu ul{
+        display: flex;
+        gap: 2rem;
+
+    }
+
+    nav .menu ul li a.title{
+        font: 400 1rem var(--body-font);
+
+    }
+
+    nav .icon-menu{
+        display: none;
+    }
+
+    #home .container{
+        grid-auto-flow: column;
+        justify-content: space-between;
+        margin: 0 auto;
+    }
+
+    #home .image{
+        order: 1;
+    }
+
+    #home .text{
+        order: 0;
+        max-width: 24rem;
+        text-align: left;
+    }
+
+    #about .container{
+        margin: 0 auto;
+        grid-auto-flow: column;
+        
+        
+    }
+
+    main{
+        margin-top: var(--header-height);
+    }
+}
+
+
+@media (min-width: 992px ) {
+    :root{
+        --title-font-size: 2.25rem;
+        --subtitle-font-size: 1.125rem;
+
+    }
 }
