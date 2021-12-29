@@ -172,11 +172,12 @@ nav ul li{
 }
 
 nav ul li a{
-    transition:  .3s;
+    transition: color .3s;
     position: relative;
 }
 
-nav ul li a:hover{
+nav ul li a:hover,
+nav ul li a.active{
     color: var(--base-color);
 
 }
@@ -192,7 +193,8 @@ nav ul li a::after{
     transition: width 0.3s;
 }
 
-nav ul li a:hover::after{
+nav ul li a:hover::after,
+nav ul li a.active::after{
     width: 100%;
     
 }
@@ -543,6 +545,7 @@ footer .social a:hover{
     opacity: 0;
     transition: .5s;
     transform: translateY(100%);
+    
 
 }
 
@@ -550,6 +553,7 @@ footer .social a:hover{
     visibility: visible;
     opacity: 1;
     transform: translateY(0);
+    
 
 }
 
@@ -567,6 +571,15 @@ footer .social a:hover{
         padding: 10rem 0;
     }
 
+    .section header,
+    #testimonials header{
+        max-width: 32rem;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
     .button{
         height: 3.125rem;
     }
@@ -582,9 +595,14 @@ footer .social a:hover{
 
     }
 
-    nav .menu ul li a.title{
-        font: 400 1rem var(--body-font);
-
+    nav .menu ul li a.title {
+        font: 400 1rem var(--type-body-font);
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    nav .menu ul li a.active {
+        font-weight: bold;
+        -webkit-font-smoothing: auto;
     }
 
     nav .icon-menu{
@@ -612,6 +630,43 @@ footer .social a:hover{
         grid-auto-flow: column;
         
         
+    }
+
+    .cards{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .card{
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+
+    #testimonials .container{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #contact .container{
+        grid-auto-flow: column;
+        align-items: center;
+    }
+
+    #contact .text{
+        max-width: 25rem;
+
+    }
+
+    footer.section{
+        padding: 3.75rem 0;
+    }
+
+    footer .container{
+        grid-auto-flow: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    footer .logo{
+        font-size: 2.25rem;
     }
 
     main{
