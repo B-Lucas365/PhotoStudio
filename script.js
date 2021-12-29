@@ -25,13 +25,13 @@ for (const element of toggle){
 const header = document.querySelector('#header')
 const navHeight = header.offsetHeight
 
-window.addEventListener('scroll', function() {
+function changeHeaderWhenScroll(){
     if(window.scrollY >= navHeight){
         header.classList.add('scroll')
     }else{
         header.classList.remove('scroll')
     }
-})
+}
 
 
 /*slider testimonials*/
@@ -44,7 +44,12 @@ const swiper = new Swiper('.swiper', {
     },
     mousewheel: true,
     keyboard: true,
-
+    breakpoints: {
+        767:{
+            slidesPerView: 2,
+            setWrapperSize: true,
+        }
+    }
 })
 
 /*scrollreveal*/
@@ -67,11 +72,45 @@ scrollReveal.reveal(
 
 /*===========back-to-top====================*/
 
-const backToTop = document.querySelector('.back-to-top')
-window.addEventListener('scroll', function() {
+const backToTopButton = document.querySelector('.back-to-top')
+
+function backToTop(){
     if (window.scrollY > 560){
-        backToTop.classList.add('show')
+        backToTopButton.classList.add('show')
     }else {
-        backToTop.classList.remove('show')
+        backToTopButton.classList.remove('show')
     }
+}
+
+
+const sections = document.querySelectorAll('main section[id]')
+
+function activateMenuAtCurrentSection(){
+
+    const checkpoint = window.pageYOffset + (window.innerHeight / 8) * 4 //divide o tamanho da tela em 8 pedaços, e pege 4 desses pedaços e soma com o deslocamento do Y da página
+  
+    for(const section of sections){
+      const sectionTop = section.offsetTop //pega o deslocamento do topo da seção
+      const sectionHeight = section.offsetHeight //pega o tamanho da seção
+      const sectionId = section.getAttribute('id') //pega o atributo 'id' da seção
+  
+      const checkpointStart = checkpoint >= sectionTop //verifica se o checkpoint é maior ou igual ao topo da seção
+      const checkpointEnd = checkpoint <= sectionTop + sectionHeight //verifica se o checkpoint é menor ou igual ao topo da seção + o tamanho da seção (tamanho total da seção)
+  
+      if(checkpointStart && checkpointEnd){ //enquanto estiver dentro de uma seção
+        document
+          .querySelector('nav ul li a[href*=' +sectionId+']')
+          .classList.add('active')
+      }else{
+        document
+          .querySelector('nav ul li a[href*=' +sectionId+']')
+          .classList.remove('active')
+      }
+    }
+  }
+
+window.addEventListener('scroll', function() {
+    changeHeaderWhenScroll()
+    backToTop()
+    activateMenuAtCurrentSection()
 })
