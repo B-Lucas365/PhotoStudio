@@ -1,1 +1,1 @@
-https://b-lucas365.github.io/PhotoStudio/
+<a href="https://b-lucas365.github.io/PhotoStudio/">PhotoStudio</a>
